@@ -1,15 +1,12 @@
 import Generator from "../Tools/Generator.js";
-import Collision from "../Tools/Collision.js";
 
 export default class Entity {
 
     static list = []
 
-    health = 100
-
     color = Generator.randomColor()
 
-    braking = .93
+    braking = .93 // коэф. торможения
 
     x = 0
     y = 0
@@ -18,12 +15,8 @@ export default class Entity {
 
     speed = .5;
 
-    width = 100
-    height = 100
-
-    floor = cnv.height - this.height
-
-    jumped = true
+    width = 10
+    height = 10
 
     constructor(x, y) {
         this.x = x
@@ -58,37 +51,16 @@ export default class Entity {
         this.x += this.velocity.x
         this.y += this.velocity.y
 
-        /* Floor */
-        // if (this.y + this.velocity.y <= floor) {
-        //     this.y += this.velocity.y
-        // }  else {
-        //     this.y = floor
-        //     this.jumped = false;
-        // }
-
-        /* top */
-        // if (this.y + this.velocity.y < 0) this.y = 0
-
-        // Entity.list.forEach(entity => {
-        //     if (entity !== this && Collision.check(entity, this)) {
-        //         // this.y = entity.y - this.height-1;
-        //         this.velocity.x = -this.velocity.x
-        //         this.velocity.y = -this.velocity.y
-        //     }
-        // })
-
     }
 
-    jump() {
-        if (this.jumped) return false
-        this.velocity.y = -this.velocity.max
-        this.jumped = true
-    }
+    static generate(count=1) {
 
-    damage(count) {
-        if (this.health - count <= 0) {
-            this.health = 0
-        } else this.health -= count
+        for(let i=0;i<count;i++)
+            new Entity(
+                Generator.random(0, window.innerWidth-10),
+                Generator.random(0, window.innerHeight-10)
+            )
+
     }
 
 }

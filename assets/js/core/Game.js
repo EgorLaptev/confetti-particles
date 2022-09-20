@@ -1,6 +1,5 @@
 import Entity from "./Entities/Entity.js";
 import Generator from "./Tools/Generator.js";
-import Coin from "./Entities/Coin.js";
 
 export default class Game {
 
@@ -14,7 +13,7 @@ export default class Game {
 
         this.cnv.style.background = Generator.randomColor(.1);
 
-        Coin.generate(10000)
+        Entity.generate(1000)
 
         this.events();
         this.loop();
