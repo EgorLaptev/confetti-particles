@@ -11,9 +11,9 @@ export default class Game {
         this.cnv = cnv
         this.ctx = cnv.getContext('2d')
 
-        this.cnv.style.background = Generator.randomColor(.1);
+        this.cnv.style.background = Generator.randomColor(.05);
 
-        Entity.generate(1000)
+        Entity.generate(2500)
 
         this.events();
         this.loop();
